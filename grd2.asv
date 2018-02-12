@@ -1,0 +1,31 @@
+function [q] = grd2(  )
+%UNTITLED Summary of this function goes here
+%   Detailed explanation goes her
+% input=importdata(training_set_q2);
+input = importdata('C:\Users\souvik paul\Desktop\training_set_q2.csv');
+Y=input([1:9055],31);
+k=1;
+while k<=9055,
+    if Y(k)==-1;
+        Y(k)=0;
+end;
+        k=k+1;
+end;
+X=input([1:9055],[1:30]);
+q=zeros(1,30);
+q(1)=1;
+i=1;
+j=1;
+alpha=0.5;
+temp=zeros(1,30);
+while i<=9055,
+    j=1;
+    while j<=30,
+        temp(j)= q(j)-alpha*sum(sigmoid(q,X)-Y)*X(i,j)/9055;
+        j=j+1;
+    end;      
+    q=temp;
+    i=i+1;
+end;
+end
+
